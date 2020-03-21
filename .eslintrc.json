@@ -4,12 +4,16 @@
     ],
     "rules": {
         "quotes": [
-            2,
+            "error",
             "single",
             {
                 "avoidEscape": true,
                 "allowTemplateLiterals": true
             }
+        ],
+        "semi": [
+            "error",
+            "always"
         ]
     }
 }
