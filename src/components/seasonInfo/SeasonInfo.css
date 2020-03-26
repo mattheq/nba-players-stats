@@ -4,13 +4,9 @@
 }
 
 .season-info-container {
+    display: flex;
+    justify-content: space-between;
     color: #BBE1FA;
-}
-
-.season-info {
-    display: inline-block;
-    margin: 0 3em;
-    width: 15em;
 }
 
 .season-info-element {

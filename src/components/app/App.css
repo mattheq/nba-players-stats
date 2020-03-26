@@ -1,5 +1,11 @@
+.searchbar-container {
+    width: 30em;
+    display: inline-block;
+}
+
 .app-title {
     color: #BBE1FA;
+    text-align: left;
 }
 
 hr {

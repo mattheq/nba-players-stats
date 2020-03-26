@@ -3,6 +3,7 @@ import './App.css';
 import Searchbar from '../searchbar/Searchbar';
 import PlayerInfo from '../playerInfo/PlayerInfo';
 import SeasonInfo from '../seasonInfo/SeasonInfo';
+import PlayerSection from '../playerSection/PlayerSection';
 
 export default function App() {
   let [player, setPlayer] = useState({
@@ -27,11 +28,12 @@ export default function App() {
 
   return (
     <>
-      <h3 className="app-title">Simple stats</h3>
-      <Searchbar setPlayer={setPlayer}/>
+      <div className="searchbar-container">
+        <h3 className="app-title">Simple stats</h3>
+        <Searchbar setPlayer={setPlayer} />
+      </div>
       <hr />
-      <PlayerInfo player={player}/>
-      <SeasonInfo playerId={player.id} />
+      <PlayerSection player={player} />
     </>
   );
 }
