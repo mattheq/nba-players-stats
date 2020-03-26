@@ -3,6 +3,7 @@ import { getSeasonAveragesStats } from '../../api/api';
 import './PlayerSection.css';
 import PlayerInfo from '../playerInfo/PlayerInfo';
 import SeasonInfo from '../seasonInfo/SeasonInfo';
+import PlayerStats from '../playerStats/PlayerStats';
 
 export default function PlayerSection({ player }) {
     let [playerStats, setPlayerStats] = useState({});
@@ -23,6 +24,7 @@ export default function PlayerSection({ player }) {
                 <>
                     <PlayerInfo player={player} />
                     <SeasonInfo stats={playerStats} />
+                    <PlayerStats stats={playerStats} />
                 </>
             }
         </div>
