@@ -18,6 +18,7 @@ export default function Searchbar(props) {
     }, []);
 
     function getSuggestionValue(suggestion) {
+        props.setPlayer(suggestion);
         return `${suggestion.first_name} ${suggestion.last_name}`;
     }
 
@@ -36,7 +37,7 @@ export default function Searchbar(props) {
             } catch (error) {
                 console.log(error.message);
             }
-        }, 2000);
+        }, 1000);
     }
 
     function onSuggestionsClearRequested() {
