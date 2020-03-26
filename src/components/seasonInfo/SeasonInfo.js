@@ -8,7 +8,7 @@ export default function SeasonInfo({ stats }) {
     return (
         <div className="season-info-container">
             <FontAwesomeIcon className="arrow" icon={faChevronLeft} />
-            <div>
+            <div className="season-info">
                 <span className="season-info-element">{`season ${stats.season}`}</span>
                 <span className="season-info-element">{`games played - ${stats.games_played}`}</span>
                 <span className="season-info-element">{`minutes - ${stats.min}`}</span>

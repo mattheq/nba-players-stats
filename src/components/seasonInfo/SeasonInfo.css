@@ -9,6 +9,10 @@
     color: #BBE1FA;
 }
 
+.season-info {
+    margin: auto;
+}
+
 .season-info-element {
     display: block;
 }
