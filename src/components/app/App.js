@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Searchbar from '../searchbar/Searchbar';
 import PlayerInfo from '../playerInfo/PlayerInfo';
+import SeasonInfo from '../seasonInfo/SeasonInfo';
 
 export default function App() {
   let [player, setPlayer] = useState({
@@ -30,6 +31,7 @@ export default function App() {
       <Searchbar setPlayer={setPlayer}/>
       <hr />
       <PlayerInfo player={player}/>
+      <SeasonInfo playerId={player.id} />
     </>
   );
 }

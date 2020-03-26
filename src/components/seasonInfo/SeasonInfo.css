@@ -1,0 +1,18 @@
+.arrow {
+    font-size: 5em;
+    cursor: pointer;
+}
+
+.season-info-container {
+    color: #BBE1FA;
+}
+
+.season-info {
+    display: inline-block;
+    margin: 0 3em;
+    width: 15em;
+}
+
+.season-info-element {
+    display: block;
+}
