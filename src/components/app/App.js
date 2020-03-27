@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import Searchbar from '../searchbar/Searchbar';
-import PlayerInfo from '../playerInfo/PlayerInfo';
-import SeasonInfo from '../seasonInfo/SeasonInfo';
-import PlayerSection from '../playerSection/PlayerSection';
+import PlayerDetails from '../playerDetails/PlayerDetails';
+import PlayerStats from '../playerStats/PlayerStats';
 
 export default function App() {
   let [player, setPlayer] = useState({
@@ -23,8 +22,7 @@ export default function App() {
       'name': 'Lakers'
     },
     'weight_pounds': 250
-  }
-  );
+  });
 
   return (
     <>
@@ -33,7 +31,10 @@ export default function App() {
         <Searchbar setPlayer={setPlayer} />
       </div>
       <hr />
-      <PlayerSection player={player} />
+      <div className="player-container">
+        <PlayerDetails player={player} />
+        <PlayerStats playerId={player.id} />
+      </div>
     </>
   );
 }

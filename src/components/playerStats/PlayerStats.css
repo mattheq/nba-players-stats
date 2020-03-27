@@ -15,3 +15,23 @@
     width: 50%;
     text-align: left;
 }
+
+.arrow {
+    font-size: 5em;
+    cursor: pointer;
+}
+
+.season-info-container {
+    display: flex;
+    justify-content: space-between;
+    color: #BBE1FA;
+}
+
+.season-info {
+    margin: auto;
+}
+
+.season-info-element {
+    display: block;
+    font-size: 1em;
+}

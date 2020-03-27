@@ -12,3 +12,8 @@ hr {
     border: 1px solid #0F4C75;
     width: 100%;
 }
+
+.player-container {
+    width: 30em;
+    display: inline-block;
+}
