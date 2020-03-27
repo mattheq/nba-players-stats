@@ -1,21 +1,3 @@
-.stat-item {
-    font-size: 1em;
-    display: flex;
-    white-space: pre-wrap;
-}
-
-.stat-name {
-    color: #BBE1FA;
-    width: 50%;
-    text-align: right;
-}
-
-.stat-value {
-    color: #FEE372;
-    width: 50%;
-    text-align: left;
-}
-
 .arrow {
     font-size: 5em;
     cursor: pointer;
