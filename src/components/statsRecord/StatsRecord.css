@@ -1,16 +1,22 @@
-.stat-item {
+.stats-item {
     font-size: 1em;
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     white-space: pre-wrap;
 }
 
-.stat-name {
+.stats-subitem {
+    width: 100%;
+}
+
+.stats-name {
     color: #BBE1FA;
     width: 50%;
     text-align: right;
 }
 
-.stat-value {
+.stats-value {
     color: #FEE372;
     width: 50%;
     text-align: left;
