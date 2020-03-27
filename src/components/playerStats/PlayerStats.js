@@ -20,7 +20,7 @@ export default function PlayerStats({ playerId }) {
     return (
         <>
         <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoading} />
-        <PlayerStatsTable stats={stats} isLoading={isLoading} />
+        {!isLoading && <PlayerStatsTable stats={stats} />}
         </>
     );
 }
