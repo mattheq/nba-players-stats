@@ -22,3 +22,7 @@ const statsLabels = {
 export function getLabel(key) {
     return statsLabels[key];
 };
+
+export function normalizeData(value, maxValue) {
+    return (value * 100) / maxValue;
+}

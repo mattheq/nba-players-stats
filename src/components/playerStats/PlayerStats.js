@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import isempty from 'lodash.isempty';
 import { getSeasonAveragesStats } from '../../api/api';
 import PlayerStatsNav from '../playerStatsNav/PlayerStatsNav';
 import PlayerStatsTable from '../playerStatsTable/PlayerStatsTable';
+import PlayerStatsChart from '../playerStatsChart/PlayerStatsChart';
 
 export default function PlayerStats({ playerId }) {
     let [stats, setStats] = useState({});
@@ -20,7 +22,12 @@ export default function PlayerStats({ playerId }) {
     return (
         <>
         <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoading} />
-        {!isLoading && <PlayerStatsTable stats={stats} />}
+        {!isLoading && !isempty(stats) &&
+            <>
+                <PlayerStatsTable stats={stats} />
+                <PlayerStatsChart stats={stats} />
+            </>
+        }
         </>
     );
 }
