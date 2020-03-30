@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './StatsRecord.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretSquareDown, faCaretSquareUp } from '@fortawesome/free-solid-svg-icons';
+import { getLabel } from '../../utils/statsUtil.js';
 
 export default function StatsRecord({ record, label }) {
     let [isExpanded, setIsExpanded] = useState(false);
@@ -22,9 +23,9 @@ export default function StatsRecord({ record, label }) {
                 </div>
                 {isExpanded &&
                 <div className='stats-item stats-subitem'>
-                    <div className="stats-name">{Object.keys(record)[1]} </div>
+                    <div className="stats-name">{getLabel(Object.keys(record)[1])} </div>
                     <div className="stats-value">{record[Object.keys(record)[1]]}</div>
-                    <div className="stats-name">{Object.keys(record)[2]} </div>
+                    <div className="stats-name">{getLabel(Object.keys(record)[2])} </div>
                     <div className="stats-value">{record[Object.keys(record)[2]]}</div>
                 </div>
                 }
