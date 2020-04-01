@@ -3,6 +3,12 @@
     cursor: pointer;
 }
 
+.arrow-disabled {
+    font-size: 5em;
+    color: #344049;
+    cursor: default;
+}
+
 .season-info-container {
     display: flex;
     justify-content: space-between;

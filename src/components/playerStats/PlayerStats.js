@@ -8,26 +8,47 @@ import PlayerStatsChart from '../playerStatsChart/PlayerStatsChart';
 export default function PlayerStats({ playerId }) {
     let [stats, setStats] = useState({});
     let [season, setSeason] = useState(2019);
-    let [isLoading, setIsLoading] = useState(false);
+    let [isLoadingNewPlayer, setIsLoadingNewPlayer] = useState(false);
+    let [isRequestPending, setIsRequestPending] = useState(false);
+
+    const nextSeason = () => getSeason(season + 1);
+    const prevSeason = () => getSeason(season - 1);
+
+    const getSeason = (value) => {
+        setIsRequestPending(true);
+        getSeasonAveragesStats(playerId, value)
+            .then(seasonAveragesStats => {
+                if (!isempty(seasonAveragesStats[0])) {
+                    setStats(seasonAveragesStats[0]);
+                    setSeason(value);
+                } else {
+                    // TODO: display warning message
+                    console.log('No stats for season');
+                }
+                setIsRequestPending(false);
+            });
+    };
 
     useEffect(() => {
-        setIsLoading(true);
-        getSeasonAveragesStats(playerId, season)
+        setIsLoadingNewPlayer(true);
+        setIsRequestPending(true);
+        getSeasonAveragesStats(playerId)
             .then(seasonAveragesStats => {
                 setStats(seasonAveragesStats[0]);
-                setIsLoading(false);
+                setIsLoadingNewPlayer(false);
+                setIsRequestPending(false);
             });
-    }, [playerId, season]);
+    }, [playerId]);
 
     return (
         <>
-        <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoading} />
-        {!isLoading && !isempty(stats) &&
-            <>
-                <PlayerStatsTable stats={stats} />
-                <PlayerStatsChart stats={stats} />
-            </>
-        }
+            <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoadingNewPlayer} isRequestPending={isRequestPending} onClickNext={nextSeason} onClickPrev={prevSeason}/>
+            {!isLoadingNewPlayer && !isempty(stats) &&
+                <>
+                    <PlayerStatsTable stats={stats} isRequestPending={isRequestPending} />
+                    <PlayerStatsChart stats={stats} />
+                </>
+            }
         </>
     );
 }

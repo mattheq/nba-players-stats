@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './PlayerStatsNav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faBasketballBall } from '@fortawesome/free-solid-svg-icons';
 
-export default function PlayerStatsNav({ stats, onClick, isLoading }) {
+export default function PlayerStatsNav({ stats, isLoading, isRequestPending, onClickNext, onClickPrev }) {
+    let [iconClass, setIconClass] = useState('arrow');
+
+    useEffect(() => {
+        const arrowClass = isRequestPending? 'arrow-disabled' : 'arrow';
+        setIconClass(arrowClass);
+    }, [isRequestPending]);
 
     const seasonInfoElements = () => {
         if (isLoading) {
@@ -19,11 +25,11 @@ export default function PlayerStatsNav({ stats, onClick, isLoading }) {
 
     return (
         <div className="season-info-container">
-            <FontAwesomeIcon className="arrow" icon={faChevronLeft} onClick={() => onClick(stats.season - 1)} />
+            <FontAwesomeIcon className={iconClass} icon={faChevronLeft} onClick={isRequestPending? null : () => onClickPrev()} />
             <div className="season-info">
                 {seasonInfoElements()}
             </div>
-            <FontAwesomeIcon className="arrow" icon={faChevronRight} onClick={() => onClick(stats.season + 1)} />
+            <FontAwesomeIcon className={iconClass} icon={faChevronRight} onClick={isRequestPending ? null : () => onClickNext()} />
         </div>
     );
 }
