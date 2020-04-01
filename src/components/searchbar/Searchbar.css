@@ -32,6 +32,7 @@
 .react-autosuggest__input::placeholder {
     color: #BBE1FA;
     font: Montserrat;
+    opacity: 50%;
 }
 
 .react-autosuggest__input--open {

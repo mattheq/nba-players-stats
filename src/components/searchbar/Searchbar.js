@@ -88,7 +88,7 @@ export default function Searchbar(props) {
                 renderSuggestion={renderSuggestion}
                 renderInputComponent={renderInputComponent}
                 inputProps={{
-                    placeholder: 'Search...',
+                    placeholder: 'Search player...',
                     value: searchValue,
                     onChange: (event, { newValue }) => setSearchValue(newValue),
                     onFocus: () => setIsFocused(true),

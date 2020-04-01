@@ -27,7 +27,7 @@ export default function App() {
   return (
     <>
       <div className="searchbar-container">
-        <h3 className="app-title">Simple stats</h3>
+        <h3 className="app-title">NBA simple stats</h3>
         <Searchbar setPlayer={setPlayer} />
       </div>
       <hr />
