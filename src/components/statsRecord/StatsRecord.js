@@ -1,34 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './StatsRecord.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretSquareDown, faCaretSquareUp } from '@fortawesome/free-solid-svg-icons';
 import { getLabel } from '../../utils/statsUtil.js';
 
 export default function StatsRecord({ record, label }) {
-    let [isExpanded, setIsExpanded] = useState(false);
-    let [icon, setIcon] = useState(faCaretSquareDown);
-
-    useEffect(() => {
-        const icon = isExpanded ? faCaretSquareUp : faCaretSquareDown;
-        setIcon(icon);
-    }, [isExpanded]);
 
     const row = () => {
         if (typeof record === 'object') {
+            const value = `${record[Object.keys(record)[0]]} (${getLabel(Object.keys(record)[1])}: ${record[Object.keys(record)[1]]}, ${getLabel(Object.keys(record)[2])}: ${record[Object.keys(record)[2]]})`;
             return <>
                 <div className="stats-name">{label} </div>
-                <div className="stats-value">
-                    {record[Object.keys(record)[0]]}
-                    <span> <FontAwesomeIcon icon={icon} onClick={() => setIsExpanded(!isExpanded)} /></span>
-                </div>
-                {isExpanded &&
-                <div className='stats-item stats-subitem'>
-                    <div className="stats-name">{getLabel(Object.keys(record)[1])} </div>
-                    <div className="stats-value">{record[Object.keys(record)[1]]}</div>
-                    <div className="stats-name">{getLabel(Object.keys(record)[2])} </div>
-                    <div className="stats-value">{record[Object.keys(record)[2]]}</div>
-                </div>
-                }
+                <div className="stats-value">{value}</div>
             </>;
         }
 
