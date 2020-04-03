@@ -35,6 +35,7 @@ export default function PlayerStats({ playerId }) {
         getSeasonAveragesStats(playerId)
             .then(seasonAveragesStats => {
                 setStats(seasonAveragesStats[0]);
+                setSeason(seasonAveragesStats[0].season);
                 setIsLoadingNewPlayer(false);
                 setIsRequestPending(false);
             });
