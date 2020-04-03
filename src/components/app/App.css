@@ -1,19 +1,34 @@
 .searchbar-container {
     width: 30em;
     display: inline-block;
+    text-align: left;
 }
 
 .app-title {
     color: #BBE1FA;
-    text-align: left;
 }
 
 hr {
     border: 1px solid #0F4C75;
-    width: 100%;
+    width: 95%;
 }
 
 .player-container {
     width: 30em;
     display: inline-block;
+}
+
+@media (max-width: 425px) {
+
+    .searchbar-container {
+        width: 95%;
+        text-align: center;
+    }
+
+    .player-container {
+        width: 99%;
+        display: inline-block;
+        margin: auto;
+        font-size: 4vw;
+    }
 }

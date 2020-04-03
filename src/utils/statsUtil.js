@@ -60,15 +60,15 @@ export function createNestedStatsObject(stats) {
 
 export function createChartData(stats) {
     return [
-        { entry: 'points', normalizedValue: normalizeData(stats.pts, 50), value: stats.pts },
-        { entry: 'assists', normalizedValue: normalizeData(stats.ast, 20), value: stats.ast },
-        { entry: 'field goals', normalizedValue: normalizeData(stats.fg_pct, 1), value: stats.fg_pct },
-        { entry: '3-PT goals', normalizedValue: normalizeData(stats.fg3_pct, 1), value: stats.fg3_pct },
-        { entry: 'free throws', normalizedValue: normalizeData(stats.ft_pct, 1), value: stats.ft_pct },
-        { entry: 'rebounds', normalizedValue: normalizeData(stats.reb, 20), value: stats.reb },
-        { entry: 'steals', normalizedValue: normalizeData(stats.stl, 5), value: stats.stl },
-        { entry: 'blocks', normalizedValue: normalizeData(stats.blk, 5), value: stats.blk },
-        { entry: 'turnovers', normalizedValue: normalizeData(stats.turnover, 10), value: stats.turnover },
-        { entry: 'personal fouls', normalizedValue: normalizeData(stats.pf, 10), value: stats.pf }
+        { entry: 'pts', normalizedValue: normalizeData(stats.pts, 50), value: stats.pts },
+        { entry: 'ast', normalizedValue: normalizeData(stats.ast, 20), value: stats.ast },
+        { entry: 'fg', normalizedValue: normalizeData(stats.fg_pct, 1), value: stats.fg_pct },
+        { entry: '3fg', normalizedValue: normalizeData(stats.fg3_pct, 1), value: stats.fg3_pct },
+        { entry: 'ft', normalizedValue: normalizeData(stats.ft_pct, 1), value: stats.ft_pct },
+        { entry: 'reb', normalizedValue: normalizeData(stats.reb, 20), value: stats.reb },
+        { entry: 'stl', normalizedValue: normalizeData(stats.stl, 5), value: stats.stl },
+        { entry: 'blk', normalizedValue: normalizeData(stats.blk, 5), value: stats.blk },
+        { entry: 'to', normalizedValue: normalizeData(stats.turnover, 10), value: stats.turnover },
+        { entry: 'pf', normalizedValue: normalizeData(stats.pf, 10), value: stats.pf }
     ];
 }

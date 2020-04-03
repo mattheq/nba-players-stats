@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ContentLoader from 'react-content-loader';
 import StatsRecord from '../statsRecord/StatsRecord';
 import { getLabel, createNestedStatsObject } from '../../utils/statsUtil.js';
 

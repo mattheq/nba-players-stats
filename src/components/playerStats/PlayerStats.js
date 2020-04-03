@@ -46,7 +46,7 @@ export default function PlayerStats({ playerId }) {
             <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoadingNewPlayer} isRequestPending={isRequestPending} onClickNext={nextSeason} onClickPrev={prevSeason}/>
             {!isLoadingNewPlayer && !isempty(stats) &&
                 <>
-                    <PlayerStatsTable stats={stats} isRequestPending={isRequestPending} />
+                    <PlayerStatsTable stats={stats} />
                     <PlayerStatsChart stats={stats} />
                 </>
             }

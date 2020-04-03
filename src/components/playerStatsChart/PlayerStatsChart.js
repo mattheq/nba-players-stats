@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RadarChart, PolarGrid, PolarAngleAxis, Radar, PolarRadiusAxis } from 'recharts';
+import { RadarChart, PolarGrid, PolarAngleAxis, Radar, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 import { createChartData } from '../../utils/statsUtil';
 
 export default function PlayerStatsChart({ stats }) {
@@ -10,13 +10,15 @@ export default function PlayerStatsChart({ stats }) {
     }, [stats]);
 
     return (
-        <div>
-            <RadarChart width={500} height={420} data={chartData} fill='#BBE1FA' >
-                <PolarGrid />
-                <PolarAngleAxis dataKey='entry' />
-                <PolarRadiusAxis domain={[0, 100]} />
-                <Radar dataKey="normalizedValue" fill='#FEE372' dot={{ fill: '#BBE1FA' }} />
-            </RadarChart>
+        <div style={{ marginTop: '10px' }}>
+            <ResponsiveContainer width='99%' aspect={1}>
+                <RadarChart data={chartData} fill='#BBE1FA' >
+                    <PolarGrid />
+                    <PolarAngleAxis dataKey='entry' />
+                    <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
+                    <Radar dataKey="normalizedValue" fill='#FEE372' dot={{ fill: '#BBE1FA' }} />
+                </RadarChart>
+            </ResponsiveContainer>
         </div>
     ) ;
 }
