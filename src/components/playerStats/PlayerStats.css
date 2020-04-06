@@ -1,0 +1,11 @@
+.not-found-icon {
+    font-size: 10em;
+    color: #FEE372;
+}
+
+.not-found-msg {
+    display: block;
+    font-size: 3.9vh;
+    font-weight: bold;
+    color: #BBE1FA;
+}

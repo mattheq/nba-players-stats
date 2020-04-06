@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import isempty from 'lodash.isempty';
+import './PlayerStats.css';
 import { getSeasonAveragesStats } from '../../api/api';
 import PlayerStatsNav from '../playerStatsNav/PlayerStatsNav';
 import PlayerStatsTable from '../playerStatsTable/PlayerStatsTable';
 import PlayerStatsChart from '../playerStatsChart/PlayerStatsChart';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMeh } from '@fortawesome/free-solid-svg-icons';
 
 export default function PlayerStats({ playerId }) {
     let [stats, setStats] = useState({});
     let [season, setSeason] = useState(2019);
-    let [isLoadingNewPlayer, setIsLoadingNewPlayer] = useState(false);
-    let [isRequestPending, setIsRequestPending] = useState(false);
+    let [isLoadingNewPlayer, setIsLoadingNewPlayer] = useState(true);
+    let [isRequestPending, setIsRequestPending] = useState(true);
 
     const nextSeason = () => getSeason(season + 1);
     const prevSeason = () => getSeason(season - 1);
@@ -35,21 +38,34 @@ export default function PlayerStats({ playerId }) {
         getSeasonAveragesStats(playerId)
             .then(seasonAveragesStats => {
                 setStats(seasonAveragesStats[0]);
-                setSeason(seasonAveragesStats[0].season);
+                setSeason(2019);
                 setIsLoadingNewPlayer(false);
                 setIsRequestPending(false);
             });
     }, [playerId]);
 
-    return (
-        <>
-            <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoadingNewPlayer} isRequestPending={isRequestPending} onClickNext={nextSeason} onClickPrev={prevSeason}/>
+    const notFoundMsg = () => {
+        return <>
+            <FontAwesomeIcon className="not-found-icon" icon={faMeh} />
+            <span className="not-found-msg">Player stats not found</span>
+        </>;
+    };
+
+    const playerStats = () => {
+        return <>
+            <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoadingNewPlayer} isRequestPending={isRequestPending} onClickNext={nextSeason} onClickPrev={prevSeason} />
             {!isLoadingNewPlayer && !isempty(stats) &&
                 <>
                     <PlayerStatsTable stats={stats} />
                     <PlayerStatsChart stats={stats} />
                 </>
             }
+        </>;
+    };
+
+    return (
+        <>
+            {isempty(stats) ? notFoundMsg() : playerStats()}
         </>
     );
 }
