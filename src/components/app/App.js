@@ -3,6 +3,7 @@ import './App.css';
 import Searchbar from '../searchbar/Searchbar';
 import PlayerDetails from '../playerDetails/PlayerDetails';
 import PlayerStats from '../playerStats/PlayerStats';
+import ToastProvider from '../toastProvider/ToastProvider';
 
 export default function App() {
   let [player, setPlayer] = useState({
@@ -31,10 +32,12 @@ export default function App() {
         <Searchbar setPlayer={setPlayer} />
       </div>
       <hr />
-      <div className="player-container">
-        <PlayerDetails player={player} />
-        <PlayerStats playerId={player.id} />
-      </div>
+      <ToastProvider>
+        <div className="player-container">
+          <PlayerDetails player={player} />
+          <PlayerStats playerId={player.id} />
+        </div>
+      </ToastProvider>
     </>
   );
 }

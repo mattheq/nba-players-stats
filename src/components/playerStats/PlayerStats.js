@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import isempty from 'lodash.isempty';
 import './PlayerStats.css';
 import { getSeasonAveragesStats } from '../../api/api';
@@ -7,12 +7,14 @@ import PlayerStatsTable from '../playerStatsTable/PlayerStatsTable';
 import PlayerStatsChart from '../playerStatsChart/PlayerStatsChart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMeh } from '@fortawesome/free-solid-svg-icons';
+import { ToastContext } from '../contexts';
 
 export default function PlayerStats({ playerId }) {
     let [stats, setStats] = useState({});
     let [season, setSeason] = useState(2019);
     let [isLoadingNewPlayer, setIsLoadingNewPlayer] = useState(true);
     let [isRequestPending, setIsRequestPending] = useState(true);
+    let { addToast } = useContext(ToastContext);
 
     const nextSeason = () => getSeason(season + 1);
     const prevSeason = () => getSeason(season - 1);
@@ -25,8 +27,7 @@ export default function PlayerStats({ playerId }) {
                     setStats(seasonAveragesStats[0]);
                     setSeason(value);
                 } else {
-                    // TODO: display warning message
-                    console.log('No stats for season');
+                    addToast(`Stats for season ${value}/${value + 1} doesn't exist`, 'danger');
                 }
                 setIsRequestPending(false);
             });
