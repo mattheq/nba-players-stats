@@ -5,6 +5,13 @@
   right: 12px;
 }
 
+@media (max-width: 425px) {
+  .toast-container {
+    top: auto;
+    bottom: 12px;
+  }
+}
+
 .toast-enter {
   transform: translateX(100%);
 }
