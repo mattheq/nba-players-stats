@@ -3,16 +3,22 @@
   z-index: 999999;
   top: 12px;
   right: 12px;
-  transition: transform .6s ease-in-out;
-  animation: toast-in-right .7s;
 }
 
-@keyframes toast-in-right {
-  from {
-	  transform: translateX(100%);
+.toast-enter {
+  transform: translateX(100%);
+}
 
-	}
-	to {
-	  transform: translateX(0);
-	}
+.toast-enter-active {
+  transform: translateX(0);
+  transition: transform .6s ease-in-out;
+}
+
+.toast-exit {
+  opacity: 1;
+}
+
+.toast-exit-active {
+  opacity: 0;
+  transition: opacity .2s;
 }

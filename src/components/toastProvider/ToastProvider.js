@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import './ToastProvider.css';
 import Toast from '../toast/Toast';
 import { ToastContext } from '../contexts';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 export default function ToastProvider({ children }) {
     let [toasts, setToasts] = useState([]);
@@ -18,9 +19,13 @@ export default function ToastProvider({ children }) {
     return (
         <ToastContext.Provider value={{ addToast }}>
             {children}
-            <div className="toast-container">
-                {toasts.map((toast) => (<Toast toast={toast} key={toast.id} remove={() => removeToast(toast.id)} />))}
-            </div>
+            <TransitionGroup className="toast-container">
+                {toasts.map((toast) =>
+                    <CSSTransition key={toast.id} timeout={500} classNames="toast">
+                        <Toast toast={toast} remove={() => removeToast(toast.id)} />
+                    </CSSTransition>
+                )}
+            </TransitionGroup>
         </ToastContext.Provider>
     );
 }
