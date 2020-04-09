@@ -11,7 +11,7 @@ export default function PlayerStatsChart({ stats }) {
 
     return (
         <div style={{ marginTop: '10px' }}>
-            <ResponsiveContainer width='99%' aspect={1}>
+            <ResponsiveContainer width='99%' aspect={1.15}>
                 <RadarChart data={chartData} fill='#BBE1FA' >
                     <PolarGrid />
                     <PolarAngleAxis dataKey='entry' />
