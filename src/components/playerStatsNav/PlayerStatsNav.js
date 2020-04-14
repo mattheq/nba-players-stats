@@ -3,11 +3,16 @@ import './PlayerStatsNav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faBasketballBall } from '@fortawesome/free-solid-svg-icons';
 
+const ARROW_ICON = {
+    ACTIVE: 'arrow',
+    DISABLED: 'arrow-disabled'
+};
+
 export default function PlayerStatsNav({ stats, isLoading, isRequestPending, onClickNext, onClickPrev }) {
-    let [iconClass, setIconClass] = useState('arrow');
+    let [iconClass, setIconClass] = useState(ARROW_ICON.ACTIVE);
 
     useEffect(() => {
-        const arrowClass = isRequestPending? 'arrow-disabled' : 'arrow';
+        const arrowClass = isRequestPending ? ARROW_ICON.DISABLED : ARROW_ICON.ACTIVE;
         setIconClass(arrowClass);
     }, [isRequestPending]);
 

@@ -3,27 +3,36 @@ import './Toast.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faExclamationCircle, faExclamationTriangle, faTimes } from '@fortawesome/free-solid-svg-icons';
 
+const TYPE = {
+    SUCCESS: 'success',
+    DANGER: 'danger',
+    WARNING: 'warning'
+};
+
+const TOAST = {
+    SUCCESS: { title: 'Success', icon: faCheckCircle },
+    DANGER: { title: 'Error', icon: faExclamationCircle },
+    WARNING: { title: 'Warning', icon: faExclamationTriangle },
+};
+
 export default function Toast({ toast, remove }) {
-    let [toastStyle, setToastStyle] = useState({
-        title: 'Success',
-        icon: faCheckCircle
-    });
+    let [toastStyle, setToastStyle] = useState(TOAST.SUCCESS);
     let toastRemoveRef = useRef();
     toastRemoveRef.current = remove;
 
     useEffect(() => {
         switch(toast.type) {
-            case 'success':
-                setToastStyle({ title: 'Success', icon: faCheckCircle });
+            case TYPE.SUCCESS:
+                setToastStyle(TOAST.SUCCESS);
                 break;
-            case 'danger':
-                setToastStyle({ title: 'Error', icon: faExclamationCircle });
+            case TYPE.DANGER:
+                setToastStyle(TOAST.DANGER);
                 break;
-            case 'warning':
-                setToastStyle({ title: 'Warning', icon: faExclamationTriangle });
+            case TYPE.WARNING:
+                setToastStyle(TOAST.WARNING);
                 break;
             default:
-                setToastStyle({ title: 'Success', icon: faCheckCircle });
+                setToastStyle(TOAST.SUCCESS);
         }
     }, [toast.type]);
 
