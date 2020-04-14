@@ -1,4 +1,4 @@
-.searchbar-container {
+.app-header {
     width: 30em;
     display: inline-block;
     text-align: left;
@@ -20,7 +20,7 @@ hr {
 
 @media (max-width: 425px) {
 
-    .searchbar-container {
+    .app-header {
         width: 95%;
         text-align: center;
     }

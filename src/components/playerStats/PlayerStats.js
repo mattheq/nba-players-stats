@@ -6,7 +6,7 @@ import PlayerStatsNav from '../playerStatsNav/PlayerStatsNav';
 import PlayerStatsTable from '../playerStatsTable/PlayerStatsTable';
 import PlayerStatsChart from '../playerStatsChart/PlayerStatsChart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMeh } from '@fortawesome/free-solid-svg-icons';
+import { faMeh, faBasketballBall } from '@fortawesome/free-solid-svg-icons';
 import { ToastContext } from '../contexts';
 
 export default function PlayerStats({ playerId }) {
@@ -45,15 +45,14 @@ export default function PlayerStats({ playerId }) {
             });
     }, [playerId]);
 
-    const notFoundMsg = () => {
-        return <>
+    const notFoundMsg = <>
             <FontAwesomeIcon className="not-found-icon" icon={faMeh} />
             <span className="not-found-msg">Player stats not found</span>
         </>;
-    };
 
-    const playerStats = () => {
-        return <>
+    const spinner = <FontAwesomeIcon className="spinner" icon={faBasketballBall} spin />;
+
+    const playerStats = <>
             <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoadingNewPlayer} isRequestPending={isRequestPending} onClickNext={nextSeason} onClickPrev={prevSeason} />
             {!isLoadingNewPlayer && !isempty(stats) &&
                 <>
@@ -62,11 +61,13 @@ export default function PlayerStats({ playerId }) {
                 </>
             }
         </>;
-    };
 
     return (
         <>
-            {isempty(stats) ? notFoundMsg() : playerStats()}
+            {isempty(stats)?
+                (isRequestPending? spinner : notFoundMsg) :
+                playerStats
+            }
         </>
     );
 }

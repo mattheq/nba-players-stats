@@ -27,16 +27,16 @@ export default function App() {
 
   return (
     <>
-      <div className="searchbar-container">
-        <h3 className="app-title">NBA simple stats</h3>
+      <header className="app-header">
+        <h1 className="app-title">NBA simple stats</h1>
         <Searchbar setPlayer={setPlayer} />
-      </div>
+      </header>
       <hr />
       <ToastProvider>
-        <div className="player-container">
+        <section className="player-container">
           <PlayerDetails player={player} />
           <PlayerStats playerId={player.id} />
-        </div>
+        </section>
       </ToastProvider>
     </>
   );

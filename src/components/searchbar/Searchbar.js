@@ -78,7 +78,7 @@ export default function Searchbar(props) {
     }
 
     return (
-        <div className="search-container">
+        <section className="search-container">
             <Autosuggest
                 focusInputOnSuggestionClick={false}
                 suggestions={suggestions}
@@ -95,6 +95,6 @@ export default function Searchbar(props) {
                     onBlur: () => setIsFocused(false),
                 }} />
             {renderNoSuggestionsInfo()}
-        </div>
+        </section>
     );
 }
