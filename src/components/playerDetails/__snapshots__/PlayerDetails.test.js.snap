@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should display correct player info 1`] = `
+<div
+  className="player-info-container"
+>
+  <div
+    className="player-info"
+  >
+    <h1
+      className="player-name"
+    >
+      James
+       
+      Harden
+    </h1>
+    <h3
+      className="player-team"
+    >
+      Houston Rockets
+    </h3>
+  </div>
+  <img
+    alt="shirt"
+    src="shirt.svg"
+  />
+</div>
+`;

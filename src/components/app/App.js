@@ -34,7 +34,7 @@ export default function App() {
       <hr />
       <ToastProvider>
         <section className="player-container">
-          <PlayerDetails player={player} />
+          <PlayerDetails first_name={player.first_name} last_name={player.last_name} team={player.team.full_name} />
           <PlayerStats playerId={player.id} />
         </section>
       </ToastProvider>
