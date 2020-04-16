@@ -1,29 +1,34 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import Autosuggest from 'react-autosuggest';
 import './Searchbar.css';
 import { getPlayers } from '../../api/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBasketballBall } from '@fortawesome/free-solid-svg-icons';
+import { ToastContext } from '../contexts';
 
+// react-autosuggest onSuggestionsFetchRequested reasons
+const FETCH_REASON = {
+    INPUT_CHANGED: 'input-changed',
+    INPUT_FOCUSED: 'input-focused',
+    ESCAPE_PRESSED: 'escape-pressed',
+    SUGGESTIONS_REVEALED: 'suggestions-revealed',
+    SUGGESTION_SELECTED: 'suggestion-selected'
+};
 
-export default function Searchbar(props) {
+export default function Searchbar({ setPlayer }) {
     let [searchValue, setSearchValue] = useState('');
     let [suggestions, setSuggestions] = useState([]);
     let [isLoading, setIsLoading] = useState(false);
     let [isFocused, setIsFocused] = useState(false);
+    let { addToast } = useContext(ToastContext);
     let timerId = useRef();
 
     useEffect(() => {
         return () => clearTimeout(timerId.current);
     }, []);
 
-    function getSuggestionValue(suggestion) {
-        props.setPlayer(suggestion);
-        return `${suggestion.first_name} ${suggestion.last_name}`;
-    }
-
-    async function onSuggestionsFetchRequested({ value, reason }) {
-        if (reason === 'input-focused') {
+    const onSuggestionsFetchRequested = async({ value, reason }) => {
+        if (reason === FETCH_REASON.INPUT_FOCUSED) {
             return null;
         }
 
@@ -33,39 +38,26 @@ export default function Searchbar(props) {
             try {
                 const players = await getPlayers(value);
                 setSuggestions(players);
-                setIsLoading(false);
             } catch (error) {
-                console.log(error.message);
+                addToast(error, 'danger');
             }
+            setIsLoading(false);
         }, 1000);
-    }
+    };
 
-    function onSuggestionsClearRequested() {
-        return null;
-    }
+    const onSuggestionsClearRequested = () => null;
 
-    function renderSuggestion(suggestion) {
-        return (
-            <span>{`${suggestion.first_name} ${suggestion.last_name}`}</span>
-        );
-    }
+    const getSuggestionValue = (suggestion) => {
+        setPlayer(suggestion);
+        return `${suggestion.first_name} ${suggestion.last_name}`;
+    };
 
-    function shouldRenderNoSuggestionsInfo() {
-        return searchValue.trim() !== '' && suggestions.length === 0 && !isLoading && isFocused;
-    }
+    const renderSuggestion = ({ first_name, last_name }) => <span>{`${first_name} ${last_name}`}</span>;
 
-    function renderNoSuggestionsInfo() {
-        if (shouldRenderNoSuggestionsInfo()) {
-            return (
-                <div className="react-autosuggest__suggestions-container--open no-suggestions">
-                    No players found
-                </div>
-            );
-        }
-    }
+    const shouldRenderNoSuggestionsInfo = searchValue.trim() !== '' && suggestions.length === 0 && !isLoading && isFocused;
 
-    function renderInputComponent(inputProps) {
-        if (shouldRenderNoSuggestionsInfo()) {
+    const renderInputComponent = (inputProps) => {
+        if (shouldRenderNoSuggestionsInfo) {
             inputProps.className += ' react-autosuggest__input--open';
         }
 
@@ -75,7 +67,7 @@ export default function Searchbar(props) {
                 {isLoading && <FontAwesomeIcon className="loading-icon" icon={faBasketballBall} spin />}
             </>
         );
-    }
+    };
 
     return (
         <section className="search-container">
@@ -94,7 +86,11 @@ export default function Searchbar(props) {
                     onFocus: () => setIsFocused(true),
                     onBlur: () => setIsFocused(false),
                 }} />
-            {renderNoSuggestionsInfo()}
+            {shouldRenderNoSuggestionsInfo &&
+                <div className="react-autosuggest__suggestions-container--open no-suggestions">
+                    No players found
+                </div>
+            }
         </section>
     );
 }
