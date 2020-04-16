@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/nba-players-stats/static/css/main.fed0abd8.chunk.css",
-    "main.js": "/nba-players-stats/static/js/main.e02e56d4.chunk.js",
-    "main.js.map": "/nba-players-stats/static/js/main.e02e56d4.chunk.js.map",
+    "main.css": "/nba-players-stats/static/css/main.11bcae13.chunk.css",
+    "main.js": "/nba-players-stats/static/js/main.676255be.chunk.js",
+    "main.js.map": "/nba-players-stats/static/js/main.676255be.chunk.js.map",
     "runtime-main.js": "/nba-players-stats/static/js/runtime-main.f6447f48.js",
     "runtime-main.js.map": "/nba-players-stats/static/js/runtime-main.f6447f48.js.map",
-    "static/js/2.9c1f0376.chunk.js": "/nba-players-stats/static/js/2.9c1f0376.chunk.js",
-    "static/js/2.9c1f0376.chunk.js.map": "/nba-players-stats/static/js/2.9c1f0376.chunk.js.map",
+    "static/js/2.61bcea2b.chunk.js": "/nba-players-stats/static/js/2.61bcea2b.chunk.js",
+    "static/js/2.61bcea2b.chunk.js.map": "/nba-players-stats/static/js/2.61bcea2b.chunk.js.map",
     "index.html": "/nba-players-stats/index.html",
-    "precache-manifest.344c7fc518c11cfaddb88e55b1b2e091.js": "/nba-players-stats/precache-manifest.344c7fc518c11cfaddb88e55b1b2e091.js",
+    "precache-manifest.b34108874a6b70caa5303af585829785.js": "/nba-players-stats/precache-manifest.b34108874a6b70caa5303af585829785.js",
     "service-worker.js": "/nba-players-stats/service-worker.js",
-    "static/css/main.fed0abd8.chunk.css.map": "/nba-players-stats/static/css/main.fed0abd8.chunk.css.map",
-    "static/js/2.9c1f0376.chunk.js.LICENSE.txt": "/nba-players-stats/static/js/2.9c1f0376.chunk.js.LICENSE.txt"
+    "static/css/main.11bcae13.chunk.css.map": "/nba-players-stats/static/css/main.11bcae13.chunk.css.map",
+    "static/js/2.61bcea2b.chunk.js.LICENSE.txt": "/nba-players-stats/static/js/2.61bcea2b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f6447f48.js",
-    "static/js/2.9c1f0376.chunk.js",
-    "static/css/main.fed0abd8.chunk.css",
-    "static/js/main.e02e56d4.chunk.js"
+    "static/js/2.61bcea2b.chunk.js",
+    "static/css/main.11bcae13.chunk.css",
+    "static/js/main.676255be.chunk.js"
   ]
 }
