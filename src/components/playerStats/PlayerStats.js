@@ -12,25 +12,24 @@ import { ToastContext } from '../contexts';
 export default function PlayerStats({ playerId }) {
     let [stats, setStats] = useState({});
     let [season, setSeason] = useState(2019);
+    let [icon, setIcon] = useState({ className: 'spinner', icon: faBasketballBall, spin: true });
     let [isLoadingNewPlayer, setIsLoadingNewPlayer] = useState(true);
     let [isRequestPending, setIsRequestPending] = useState(true);
     let { addToast } = useContext(ToastContext);
 
-    const nextSeason = () => getSeason(season + 1);
-    const prevSeason = () => getSeason(season - 1);
+    const nextSeason = async() => await getSeason(season + 1);
+    const prevSeason = async() => await getSeason(season - 1);
 
-    const getSeason = (value) => {
+    const getSeason = async(value) => {
         setIsRequestPending(true);
-        getSeasonAveragesStats(playerId, value)
-            .then(seasonAveragesStats => {
-                if (!isempty(seasonAveragesStats[0])) {
-                    setStats(seasonAveragesStats[0]);
-                    setSeason(value);
-                } else {
-                    addToast(`Stats for season ${value}/${value + 1} doesn't exist`, 'danger');
-                }
-                setIsRequestPending(false);
-            });
+        const seasonAveragesStats = await getSeasonAveragesStats(playerId, value);
+        if (!isempty(seasonAveragesStats[0])) {
+            setStats(seasonAveragesStats[0]);
+            setSeason(value);
+        } else {
+            addToast(`Stats for season ${value}/${value + 1} doesn't exist`, 'danger');
+        }
+        setIsRequestPending(false);
     };
 
     useEffect(() => {
@@ -45,28 +44,27 @@ export default function PlayerStats({ playerId }) {
             });
     }, [playerId]);
 
-    const notFoundMsg = <>
-            <FontAwesomeIcon className="not-found-icon" icon={faMeh} />
-            <span className="not-found-msg">Player stats not found</span>
-        </>;
-
-    const spinner = <FontAwesomeIcon className="spinner" icon={faBasketballBall} spin />;
-
-    const playerStats = <>
-            <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoadingNewPlayer} isRequestPending={isRequestPending} onClickNext={nextSeason} onClickPrev={prevSeason} />
-            {!isLoadingNewPlayer && !isempty(stats) &&
-                <>
-                    <PlayerStatsTable stats={stats} />
-                    <PlayerStatsChart stats={stats} />
-                </>
-            }
-        </>;
+    useEffect(() => {
+        isRequestPending ? setIcon({ className: 'spinner', icon: faBasketballBall, spin: true }) : setIcon({ className: 'not-found-icon', icon: faMeh, spin: false });
+    }, [isRequestPending]);
 
     return (
         <>
-            {isempty(stats)?
-                (isRequestPending? spinner : notFoundMsg) :
-                playerStats
+            {!isempty(stats)?
+                <>
+                    <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoadingNewPlayer} isRequestPending={isRequestPending} onClickNext={nextSeason} onClickPrev={prevSeason} />
+                    {!isLoadingNewPlayer &&
+                        <>
+                            <PlayerStatsTable stats={stats} />
+                            <PlayerStatsChart stats={stats} />
+                        </>
+                    }
+                </> : (
+                    <>
+                        <FontAwesomeIcon {...icon} />
+                        {!isRequestPending && <span className="not-found-msg">Player stats not found</span>}
+                    </>
+                )
             }
         </>
     );

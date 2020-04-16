@@ -10,7 +10,7 @@ export default function PlayerStatsTable({ stats }) {
     }, [stats]);
 
     const playerStats = Object.keys(nestedStats)
-        .map(key => <StatsRecord key={key} record={nestedStats[key]} label={getLabel(key)} />);
+        .map(key => <StatsRecord key={key} value={nestedStats[key]} label={getLabel(key)} />);
 
     return (<div>{playerStats}</div>);
 }
