@@ -21,7 +21,7 @@ export default function PlayerStatsNav({ stats, isLoading, isRequestPending, onC
             <FontAwesomeIcon className={iconClass} icon={faChevronLeft} onClick={isRequestPending? null : () => onClickPrev()} />
             <div className="season-info">
                 {isLoading?
-                    <FontAwesomeIcon icon={faBasketballBall} spin={isLoading} /> :
+                    <FontAwesomeIcon icon={faBasketballBall} spin /> :
                     <>
                         <span className="season-info-element">{`season ${stats.season}/${stats.season + 1}`}</span>
                         <span className="season-info-element">{`games played - ${stats.games_played}`}</span>

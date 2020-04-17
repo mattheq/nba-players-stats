@@ -45,14 +45,16 @@ export default function PlayerStats({ playerId }) {
     }, [playerId]);
 
     useEffect(() => {
-        isRequestPending ? setIcon({ className: 'spinner', icon: faBasketballBall, spin: true }) : setIcon({ className: 'not-found-icon', icon: faMeh, spin: false });
+        isRequestPending ?
+            setIcon({ className: 'spinner', icon: faBasketballBall, spin: true }) :
+            setIcon({ className: 'not-found-icon', icon: faMeh, spin: false });
     }, [isRequestPending]);
 
     return (
         <>
             {!isempty(stats)?
                 <>
-                    <PlayerStatsNav stats={stats} onClick={setSeason} isLoading={isLoadingNewPlayer} isRequestPending={isRequestPending} onClickNext={nextSeason} onClickPrev={prevSeason} />
+                    <PlayerStatsNav stats={stats} isLoading={isLoadingNewPlayer} isRequestPending={isRequestPending} onClickNext={nextSeason} onClickPrev={prevSeason} />
                     {!isLoadingNewPlayer &&
                         <>
                             <PlayerStatsTable stats={stats} />
