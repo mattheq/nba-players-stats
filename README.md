@@ -1,2 +1,2 @@
 # Demo
-## 💻 Working demo can be found here: https://mattheq.github.io/nba-players-stats/
+## 💻 Demo: https://mattheq.github.io/nba-players-stats/
