@@ -1,4 +1,4 @@
 # 🏀 NBA Players stats
 
 ## Demo
-### 💻 Demo: https://mattheq.github.io/nba-players-stats/
+### 💻 Demo: https://mat-grz.github.io/nba-players-stats/
